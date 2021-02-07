@@ -33,4 +33,9 @@ public enum HeadingOrientation {
     public HeadingOrientation turnRight() {
         return HeadingOrientation.from(this.right);
     }
+
+    @Override
+    public String toString() {
+        return this.current;
+    }
 }
