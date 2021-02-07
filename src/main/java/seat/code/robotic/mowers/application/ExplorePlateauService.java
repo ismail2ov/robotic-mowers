@@ -4,6 +4,7 @@ import java.security.InvalidParameterException;
 import seat.code.robotic.mowers.domain.mower.Coordinate;
 import seat.code.robotic.mowers.domain.mower.HeadingOrientation;
 import seat.code.robotic.mowers.domain.mower.Mower;
+import seat.code.robotic.mowers.domain.mower.MowerData;
 import seat.code.robotic.mowers.domain.plateau.Plateau;
 
 public class ExplorePlateauService {
@@ -14,10 +15,10 @@ public class ExplorePlateauService {
         this.plateau = plateau;
     }
 
-    public String runMower(final String initialPosition, final String commands) {
-        final Mower mower = this.buildMover(initialPosition);
+    public String runMower(final MowerData moverData) {
+        final Mower mower = this.buildMover(moverData.getInitialPosition());
 
-        commands.chars().forEach(c -> this.execute(mower, (char) c));
+        moverData.getCommands().chars().forEach(c -> this.execute(mower, (char) c));
 
         return mower.getStatus();
     }

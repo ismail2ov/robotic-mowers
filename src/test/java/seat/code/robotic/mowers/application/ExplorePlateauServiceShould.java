@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import seat.code.robotic.mowers.domain.mower.MowerData;
 import seat.code.robotic.mowers.domain.plateau.Plateau;
 
 class ExplorePlateauServiceShould {
@@ -24,21 +25,21 @@ class ExplorePlateauServiceShould {
     @Test
     void whenMoverIsOutOfPlateauThenExecuteException() {
         final Exception exception = assertThrows(InvalidParameterException.class, () ->
-            this.explorePlateauService.runMower("6 2 N", ""));
+            this.explorePlateauService.runMower(new MowerData("6 2 N", "")));
         assertEquals("The mower is out of the plateau", exception.getMessage());
     }
 
     @Test
     void whenHeadingOrientationIsUndefinedThenExecuteException() {
         final Exception exception = assertThrows(InvalidParameterException.class, () ->
-            this.explorePlateauService.runMower("1 2 Y", ""));
+            this.explorePlateauService.runMower(new MowerData("1 2 Y", "")));
         assertEquals("Heading orientation cannot be determined", exception.getMessage());
     }
 
     @Test
     void whenCommandIsEmptyThenFinalPositionIsSameAsInitialPosition() {
         final String initialPosition = "1 2 N";
-        final String actual = this.explorePlateauService.runMower(initialPosition, "");
+        final String actual = this.explorePlateauService.runMower(new MowerData(initialPosition, ""));
 
         assertThat(actual).isEqualTo(initialPosition);
     }
@@ -49,7 +50,7 @@ class ExplorePlateauServiceShould {
         "3 3 E, MMRMMRMRRM, 5 1 E"
     })
     void roboticMowerShouldExploreThePlateau(final String initialPosition, final String commands, final String finalPosition) {
-        final String actual = this.explorePlateauService.runMower(initialPosition, commands);
+        final String actual = this.explorePlateauService.runMower(new MowerData(initialPosition, commands));
 
         assertThat(actual).isEqualTo(finalPosition);
     }

@@ -24,7 +24,7 @@ public class RoboticMowersApplication {
         final List<MowerData> mowers = reader.readMowersData();
 
         for (final MowerData mower : mowers) {
-            writer.printResult(explorePlateauService.runMower(mower.getInitialPosition(), mower.getCommands()));
+            writer.printResult(explorePlateauService.runMower(mower));
         }
 
         writer.printGoodbyeMessage();
