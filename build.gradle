@@ -5,6 +5,12 @@ plugins {
 group 'seat.code'
 version '1.0-SNAPSHOT'
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'seat.code.robotic.mowers.RoboticMowersApplication'
+    }
+}
+
 repositories {
     mavenCentral()
 }
