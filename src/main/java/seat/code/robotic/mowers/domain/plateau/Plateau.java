@@ -1,4 +1,4 @@
-package seat.code.robotic.mowers.domain;
+package seat.code.robotic.mowers.domain.plateau;
 
 public class Plateau {
 

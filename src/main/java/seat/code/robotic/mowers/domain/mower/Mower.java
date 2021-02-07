@@ -1,4 +1,4 @@
-package seat.code.robotic.mowers.domain;
+package seat.code.robotic.mowers.domain.mower;
 
 public class Mower {
 
@@ -8,10 +8,6 @@ public class Mower {
     public Mower(final Coordinate position, final HeadingOrientation headingOrientation) {
         this.position = position;
         this.headingOrientation = headingOrientation;
-    }
-
-    public Coordinate getPosition() {
-        return this.position;
     }
 
     public HeadingOrientation getHeadingOrientation() {
@@ -28,5 +24,17 @@ public class Mower {
 
     public void moveTo(final Coordinate position) {
         this.position = position;
+    }
+
+    public int getPositionX() {
+        return this.position.getX();
+    }
+
+    public int getPositionY() {
+        return this.position.getY();
+    }
+
+    public String getStatus() {
+        return String.format("%d %d %s", this.getPositionX(), this.getPositionY(), this.headingOrientation);
     }
 }

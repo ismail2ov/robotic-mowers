@@ -1,10 +1,10 @@
 package seat.code.robotic.mowers.application;
 
 import java.security.InvalidParameterException;
-import seat.code.robotic.mowers.domain.Coordinate;
-import seat.code.robotic.mowers.domain.HeadingOrientation;
-import seat.code.robotic.mowers.domain.Mower;
-import seat.code.robotic.mowers.domain.Plateau;
+import seat.code.robotic.mowers.domain.mower.Coordinate;
+import seat.code.robotic.mowers.domain.mower.HeadingOrientation;
+import seat.code.robotic.mowers.domain.mower.Mower;
+import seat.code.robotic.mowers.domain.plateau.Plateau;
 
 public class ExplorePlateauService {
 
@@ -19,7 +19,7 @@ public class ExplorePlateauService {
 
         commands.chars().forEach(c -> this.execute(mower, (char) c));
 
-        return String.format("%d %d %s", mower.getPosition().getX(), mower.getPosition().getY(), mower.getHeadingOrientation());
+        return mower.getStatus();
     }
 
     private Mower buildMover(final String initialPosition) {
@@ -57,8 +57,8 @@ public class ExplorePlateauService {
     }
 
     private Coordinate nextPosition(final Mower mower) {
-        int x = mower.getPosition().getX();
-        int y = mower.getPosition().getY();
+        int x = mower.getPositionX();
+        int y = mower.getPositionY();
         switch (mower.getHeadingOrientation()) {
             case NORTH:
                 y++;
