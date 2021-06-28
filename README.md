@@ -1,6 +1,5 @@
 # Robotic Mowers
 
-### SEAT:CODE Technical Challenge
 
 ### Compile
 `./gradlew clean build`
